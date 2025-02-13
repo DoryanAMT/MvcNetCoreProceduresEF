@@ -110,8 +110,8 @@ namespace MvcNetCoreProceduresEF.Repositories
             
             string sql = "SP_FIND_ENFERMO @INSCRIPCION";
             SqlParameter pamInscripcion = new SqlParameter("@INSCRIPCION", inscripcion);
-            var consulta = this.context.Enfermos.FromSqlRaw(sql, pamInscripcion);
-            Enfermo enfermo = consulta.AsEnumerable().FirstOrDefault();
+            var consulta = await this.context.Enfermos.FromSqlRaw(sql, pamInscripcion).ToListAsync();
+            Enfermo enfermo = consulta.FirstOrDefault() ;
             return enfermo;
         }
         public async Task DeleteEnfermo
@@ -149,5 +149,6 @@ namespace MvcNetCoreProceduresEF.Repositories
             SqlParameter pamGenero= new SqlParameter("@genero", genero);
             this.context.Database.ExecuteSqlRaw(sql, pamApellido, pamDireccion, pamFechaNac, pamGenero);
         }
+        
     }
 }

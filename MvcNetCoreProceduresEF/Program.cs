@@ -11,6 +11,9 @@ string connectionString = builder.Configuration.GetConnectionString("SqlHospital
 builder.Services.AddTransient<RepositoryEnfermos>();
 builder.Services.AddDbContext<EnfermoContext>
     (options => options.UseSqlServer(connectionString));
+builder.Services.AddTransient<RepositoryDoctores>();
+builder.Services.AddDbContext<DoctorContext>
+    (options => options.UseSqlServer(connectionString));
 
 var app = builder.Build();
 
