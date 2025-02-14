@@ -25,5 +25,6 @@ namespace MvcNetCoreProceduresEF.Controllers
             List<Doctor> doctores = await this.repo.IncrementarSalarioEspecialidad(salario, especialidad);
             return View(doctores);
         }
+        
     }
 }
