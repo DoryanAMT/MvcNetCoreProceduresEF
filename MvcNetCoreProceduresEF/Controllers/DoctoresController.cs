@@ -19,10 +19,10 @@ namespace MvcNetCoreProceduresEF.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> Index
-            (strin)
+            (int salario, string especialidad)
         {
             ViewData["ESPECIALIDADES"] = await this.repo.GetEspecialidades();
-            List<Doctor> doctores = await this.repo.IncrementarSalarioEspecialidad();
+            List<Doctor> doctores = await this.repo.IncrementarSalarioEspecialidad(salario, especialidad);
             return View(doctores);
         }
     }

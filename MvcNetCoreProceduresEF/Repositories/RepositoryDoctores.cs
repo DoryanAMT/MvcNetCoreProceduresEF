@@ -46,8 +46,8 @@ namespace MvcNetCoreProceduresEF.Repositories
         public async Task<List<Doctor>> IncrementarSalarioEspecialidad
             (int salario, string especialidad)
         {
-            string sql = "SP_UPDATE_SALARIO_ESPECIALIDAD";
-            SqlParameter pamSalario = new SqlParameter("@salario", especialidad);
+            string sql = "SP_UPDATE_SALARIO_ESPECIALIDAD @salario, @especialidad";
+            SqlParameter pamSalario = new SqlParameter("@salario", salario);
             SqlParameter pamEspecialidad= new SqlParameter("@especialidad", especialidad);
             var consulta = await this.context.Doctores.FromSqlRaw(sql, pamSalario, pamEspecialidad).ToListAsync();
             return consulta.ToList();
